@@ -24,3 +24,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Ignore vim plugin
+# This is handled by Vundle
+.vim/plugins
+.vim/.netrwhist

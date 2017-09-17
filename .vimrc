@@ -99,7 +99,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " Alternatively, pass a path where Vundle should install plugins
 " Example: call vundle#begin('~/some/path/here')
 " ====================================================================
-call vundle#begin()
+call vundle#begin('~/.vim/plugins')
 
 " ====================================================================
 " Vundle:
