@@ -5,4 +5,11 @@ cd .dotfiles
 perl mklinks.pl --dotfiles
 ```
 
+Install submodules
+```
+cd .dotfiles
+git submodule update --init
+```
+
+
 
