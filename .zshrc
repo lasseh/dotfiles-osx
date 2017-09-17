@@ -1,7 +1,6 @@
 # vim: ft=zsh
 # File: ~/.zshrc
 
-
 # Set a resonable umask, we'd rather explicitly share
 # share stuff with our neighbours.
 umask 077
@@ -22,8 +21,6 @@ source "${HOME}/.zsh/termsupport.zsh"          || _zwarn "Could not source ~/.zs
 #source "${HOME}/.zsh/git2.zsh"          || _zwarn "Could not source ~/.zsh/git.zsh"
 
 # oh-my-zsh plugins
-#plugins=(git osx finder pass urltools zsh-syntax-highlighting)
-#source "${HOME}/.config/oh-my-zsh/plugins/git-prompt/git-prompt.plugin.zsh"         || _zwarn "Could not source git-promt plugin"
 source "${HOME}/.config/oh-my-zsh/plugins/osx/osx.plugin.zsh"         		|| _zwarn "Could not source osx plugin"
 
 # Path to your zsh configuration.
@@ -44,4 +41,3 @@ fi
 
 # Iterm2 Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-

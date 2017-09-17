@@ -6,23 +6,14 @@ DISPLAY=:0.0
 EDITOR="vim"				# Use vim as the editor
 PAGER="less"				# Use less as the default pager
 
-# ==> zsh plugins / Oh my zsh
-#ZSH="${HOME}/.config/oh-my-zsh"
-#ZSH_THEME="norm"
-
-#_Z_DATA="$HOME/.config/.z"
-
 # ==> Time & Language
 LC_ALL="en_US.UTF-8"
 LANG="en_US.UTF-8"
 LANGUAGE="en_US.UTF-8"
 TZ="Europe/Oslo"
 
-
 # ==> Set Golang's GOPATH
 test -d "${HOME}/code/go" && GOPATH="${HOME}/code/go"
-#test -d "${HOME}/Projects/Gopath" && GOPATH="${HOME}/Projects/Gopath"
-#test -d "${HOME}/Projects/go" && GOPATH="${HOME}/Projects/go"
 
 # ==> System Paths
 # The PATH variable varies from system to system which means

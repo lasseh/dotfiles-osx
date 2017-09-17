@@ -38,7 +38,6 @@ alias gcpush='git commit -a -m && git push origin'
 alias gundo='git reset --soft HEAD~1'
 alias gupdatesubm='pull --recurse-submodules && git submodule update --recursive --remote'
 
-
 # ==> Listing aliases
 if which exa &>/dev/null; then
 	alias ls="exa --group-directories-first --git --color-scale -mghas Name --long"
