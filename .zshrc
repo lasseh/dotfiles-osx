@@ -20,7 +20,7 @@ source "${HOME}/.zsh/termsupport.zsh"          || _zwarn "Could not source ~/.zs
 #source "${HOME}/.zsh/git.zsh"          || _zwarn "Could not source ~/.zsh/git2.zsh"
 
 # oh-my-zsh plugins
-source "${HOME}/.config/oh-my-zsh/plugins/osx/osx.plugin.zsh"         		|| _zwarn "Could not source osx plugin"
+source "${HOME}/.zsh/oh-my-zsh/osx.plugin.zsh"         		|| _zwarn "Could not source osx plugin"
 
 # Path to your zsh configuration.
 ZSH=$HOME/.zsh

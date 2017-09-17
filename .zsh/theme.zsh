@@ -4,7 +4,7 @@
 # oh-my-zsh Theme
 # This also sets the prompt
 ZSH_THEME="refined"
-source "$HOME/.config/oh-my-zsh/themes/$ZSH_THEME.zsh-theme"
+source "$HOME/.zsh/oh-my-zsh/$ZSH_THEME.zsh-theme"
 
 # Base16 Colorscheme
 SHELL_THEME="base16-unikitty-dark"
