@@ -1,7 +1,8 @@
 # vim: ft=zsh
 # ~/.zsh/oh-my.zsh
 
-# Zsh Theme
+# oh-my-zsh Theme
+# This also sets the prompt
 ZSH_THEME="refined"
 source "$HOME/.config/oh-my-zsh/themes/$ZSH_THEME.zsh-theme"
 

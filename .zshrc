@@ -17,8 +17,7 @@ source "${HOME}/.zsh/vars.zsh"          || _zwarn "Could not source ~/.zsh/vars.
 source "${HOME}/.zsh/functions.zsh"          || _zwarn "Could not source ~/.zsh/functions.zsh"
 source "${HOME}/.zsh/completion.zsh"          || _zwarn "Could not source ~/.zsh/completion.zsh"
 source "${HOME}/.zsh/termsupport.zsh"          || _zwarn "Could not source ~/.zsh/termsupport.zsh"
-#source "${HOME}/.zsh/git.zsh"          || _zwarn "Could not source ~/.zsh/git.zsh"
-#source "${HOME}/.zsh/git2.zsh"          || _zwarn "Could not source ~/.zsh/git.zsh"
+#source "${HOME}/.zsh/git.zsh"          || _zwarn "Could not source ~/.zsh/git2.zsh"
 
 # oh-my-zsh plugins
 source "${HOME}/.config/oh-my-zsh/plugins/osx/osx.plugin.zsh"         		|| _zwarn "Could not source osx plugin"
