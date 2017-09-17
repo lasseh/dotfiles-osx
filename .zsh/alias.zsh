@@ -41,8 +41,8 @@ alias gupdatesubm='pull --recurse-submodules && git submodule update --recursive
 
 # ==> Listing aliases
 if which exa &>/dev/null; then
-	alias ls="exa --group-directories-first --git --color-scale -mghrs size"
-	alias lst="exa --group-directories-first --git --tree --color-scale -mghrs size"
+	alias ls="exa --group-directories-first --git --color-scale -mghas Name --long"
+	alias lst="exa --group-directories-first --git --tree --color-scale -mghs Name --long"
 	alias xa="exa"
 	alias le="exa -lrhgHBimU --git --group-directories-first"
 else
