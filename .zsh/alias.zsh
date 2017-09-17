@@ -36,7 +36,7 @@ alias gcm='git commit --message'
 alias gitbranches="git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 alias gcpush='git commit -a -m && git push origin'
 alias gundo='git reset --soft HEAD~1'
-alias gupdatesubm='pull --recurse-submodules && git submodule update --recursive --remote'
+alias gupdatesubm='git pull --recurse-submodules && git submodule update --recursive --remote'
 
 # ==> Listing aliases
 if which exa &>/dev/null; then
