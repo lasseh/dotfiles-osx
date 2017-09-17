@@ -193,6 +193,10 @@ Plugin 'chriskempson/base16-vim'
 " ====================================================================
 Plugin 'vim-scripts/Conque-Shell'
 
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'fatih/vim-nginx', {'for' : 'nginx'}
+
+
 call vundle#end()
 filetype plugin indent on
 " ====================================================================
