@@ -43,6 +43,10 @@ test -d "/opt/local/share/man" && \
 test -d "/usr/local/opt/coreutils/libexec/gnuman" && \
 	MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
 
+#Postgres
+test -d "/Applications/Postgres.app/Contents/Versions/latest/bin" && \
+	PATH="${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin"
+
 # Save to this file
 HISTFILE=~/.history
 
