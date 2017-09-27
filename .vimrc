@@ -5,7 +5,7 @@
 "  \ \ \L\ \/\  __/     \ \ \_/ \ \ \/\ \/\ \/\ \ 
 "   \ \____/\ \____\     \ `\___/\ \_\ \_\ \_\ \_\
 "    \/___/  \/____/      `\/__/  \/_/\/_/\/_/\/_/
-"                                                 
+"
 " Legz's Everyday Vim Config File
 " - Used mostly for Golang, Perl, Shell
 "
@@ -31,21 +31,21 @@
 "		q:	Quit vim.
 "		qq:	Really quit vim.
 "		h:	hide search highligt
-"		
+"
 "	2.2 Other Hotkeys
 "		C^n	Toggle NERDTree
 "		F5	Toggle Paste-Mode
 "		F6	Toggle Tagbar
 "		F7	Toggle linenumbers
 "		^x^o 	Toggle omnicomplete
-"			
+"
 "	2.2.1 Nerdtree Hotkeys
 "		o 	open folder
 "		O	recursively open folder
 "		go	preview file
 "		t	open in new tab
 "		i	open in vertical split
-"		s	open in horizontal split 
+"		s	open in horizontal split
 "		:e somefile	create a new file
 "
 "	2.2.2 VimWiki Hotkeys
@@ -80,10 +80,10 @@
 syntax on
 
 " ====================================================================
-" Be (Vim)proved, required from Vundle 
+" Be (Vim)proved, required from Vundle
 " ====================================================================
-set nocompatible      
-filetype off         
+set nocompatible
+filetype off
 
 " ====================================================================
 " Set the runtime path to initialize vundle
@@ -193,9 +193,16 @@ Plugin 'chriskempson/base16-vim'
 " ====================================================================
 Plugin 'vim-scripts/Conque-Shell'
 
+" ====================================================================
+" Better Whitespace:
+" ====================================================================
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'fatih/vim-nginx', {'for' : 'nginx'}
 
+" ====================================================================
+" vim-nginx:
+" Syntax highlightning
+" ====================================================================
+Plugin 'fatih/vim-nginx', {'for' : 'nginx'}
 
 call vundle#end()
 filetype plugin indent on
@@ -409,7 +416,6 @@ augroup CloseIfOnlyControlWinLeft
 	au BufEnter * call s:CloseIfOnlyControlWinLeft()
 augroup END
 
-
 " ====================================================================
 " Vimwiki
 " ====================================================================
@@ -422,8 +428,6 @@ au BufReadPost *
 			\ if line("'\"") > 0 && line("'\"") <= line("$") |
 			\   exe "normal g`\"" |
 			\ endif
-
-
 
 " ====================================================================
 " JQuery

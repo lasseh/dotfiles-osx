@@ -29,7 +29,6 @@ alias gpull='git pull'
 alias gd='git diff --color --no-ext-diff'
 alias gdstat='git diff --color --stat'
 alias gits='git status -sb'
-#alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias gits='git status -sb'
 alias gcm='git commit --message'
@@ -43,9 +42,9 @@ if which exa &>/dev/null; then
 	alias ls="exa --group-directories-first --git --color-scale -mghas Name --long"
 	alias lst="exa --group-directories-first --git --tree --color-scale -mghs Name --long"
 	alias xa="exa"
-	alias le="exa -lrhgHBimU --git --group-directories-first"
+	alias le="exa -lrhgHBimUa --git --group-directories-first"
 else
-	alias ls="\ls -lFhX --indicator-style=file-type --color=always --time=ctime"
+	alias ls="\ls -hovA --indicator-style=file-type --color=always --group-directories-first --time=ctime"
 	alias lst="tree -C --du --si -L 5 --dirsfirst --prune"
 	alias ldot="\ls --indicator-style=file-type --color=always  -ld .*"
 fi

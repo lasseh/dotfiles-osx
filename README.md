@@ -10,6 +10,3 @@ Install submodules
 cd .dotfiles
 git submodule update --init
 ```
-
-
-
