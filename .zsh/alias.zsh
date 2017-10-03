@@ -9,6 +9,7 @@ alias rm='rm -v'
 
 # ==> Folder shortcuts
 alias c='cd $HOME/code/go/src/github.com/lasseh'
+alias wh='cd $HOME/code/go/src/github.com/webhuset'
 
 # ==> Tmux shortcuts
 # to create dev/tech session: tmux new-session -s dev
