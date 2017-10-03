@@ -50,5 +50,11 @@ else
 	alias ldot="\ls --indicator-style=file-type --color=always  -ld .*"
 fi
 
+# Color Cat
+# Install: go get -u github.com/jingweno/ccat
+if which ccat &>/dev/null; then
+	alias cat="ccat"
+fi
+
 # # ==> Utilities
 alias randpasswd="LANG=c < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo;"
