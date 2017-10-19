@@ -10,3 +10,6 @@ Install submodules
 cd .dotfiles
 git submodule update --init
 ```
+
+# iTerm2 setetings
+* Left option key acts as: +Esc
