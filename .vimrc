@@ -1,8 +1,8 @@
-" __              __   __  __                     
-"/\ \            /\ \ /\ \/\ \  __                
-"\ \ \         __\ \\ \ \ \ \ \/\_\    ___ ___    
-" \ \ \  __  /'__`\//  \ \ \ \ \/\ \ /' __` __`\  
-"  \ \ \L\ \/\  __/     \ \ \_/ \ \ \/\ \/\ \/\ \ 
+" __              __   __  __
+"/\ \            /\ \ /\ \/\ \  __
+"\ \ \         __\ \\ \ \ \ \ \/\_\    ___ ___
+" \ \ \  __  /'__`\//  \ \ \ \ \/\ \ /' __` __`\
+"  \ \ \L\ \/\  __/     \ \ \_/ \ \ \/\ \/\ \/\ \
 "   \ \____/\ \____\     \ `\___/\ \_\ \_\ \_\ \_\
 "    \/___/  \/____/      `\/__/  \/_/\/_/\/_/\/_/
 "
@@ -67,13 +67,6 @@
 "		GOSDL	Import Go SDL Libraries
 "		GOVEC	Import Go 2D Vector libraries
 "
-" TODO
-" disable record mode
-" hotkey for begining/end of line
-" leader s to save?
-" set clipboard to linux/tmux clipboard
-" always pastemode
-"
 " ====================================================================
 " Enable syntax highlight
 " ====================================================================
@@ -132,7 +125,8 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 " The NERD Commenter:
 " Easiest way to comment blocks, lines, etc.
 " ====================================================================
-Plugin 'scrooloose/nerdcommenter'
+"Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
 
 " ====================================================================
 " Vim Markdown Syntax:
@@ -151,11 +145,6 @@ Plugin 'suan/vim-instant-markdown'
 " Omnicomplete and syntax
 " ====================================================================
 Plugin 'othree/html5.vim'
-
-" ====================================================================
-" JavaScript Syntax:
-" ====================================================================
-Plugin 'pangloss/vim-javascript'
 
 " ====================================================================
 " JQuery Syntax:
@@ -198,11 +187,19 @@ Plugin 'vim-scripts/Conque-Shell'
 " ====================================================================
 Plugin 'ntpeters/vim-better-whitespace'
 
-" ====================================================================
-" vim-nginx:
-" Syntax highlightning
-" ====================================================================
-Plugin 'fatih/vim-nginx', {'for' : 'nginx'}
+
+" Uncommented cuz dont know how to use yet
+"Plugin 'junegunn/fzf.vim'
+
+" Limelight
+Plugin 'itchyny/lightline.vim'
+
+Plugin 'w0rp/ale'
+
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'sheerun/vim-polyglot'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -238,6 +235,7 @@ noremap <leader>R :GoRename<cr>
 noremap <leader>q :q<cr>
 noremap <leader>qq :q!<cr>
 noremap <leader>wa :wa<cr>
+noremap <leader>w :w<cr>
 noremap <leader>h :nohlsearch<CR>
 inoremap jk <esc>
 
@@ -250,6 +248,7 @@ iabbrev HANDLER (w http.ResponseWriter, r *http.Request)
 let base16colorspace=256  	" Access colors present in 256 colorspace
 set background=dark		" Use dark theme
 colorscheme base16-unikitty-dark " Enable base16 theme
+let g:rehash256 = 1
 
 " ====================================================================
 " Visual
@@ -269,10 +268,11 @@ set shortmess=aIoO		" no welcome message
 set wildmode=list:longest,full	" Show vim completion menu
 
 " Statusline
-set showmode			" Show mode
+"set showmode			" Show mode
 set laststatus=2		" Display statusline
 set showcmd     		" show command in bottom bar
 set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
+set noshowmode 			" Lightline handle this
 
 " ====================================================================
 " Clipboard
@@ -296,6 +296,11 @@ set encoding=utf8 		" UTF-8 Encoding
 set ttyfast			" faster redrawing
 set nowb			" Prevents automatic write backup before overwriting file
 set diffopt+=vertical		" Always use vertical diffs
+set updatetime=250		" Faster update of internals
+set cindent                 	" Automatic program indenting
+set cinkeys-=0#             	" Comments don't fiddle with indenting
+"set notitle                 	" Don't set the title of the Vim window
+
 
 " Brackets
 set showmatch			" Show matching brackets
@@ -318,6 +323,10 @@ filetype plugin indent on	" Indent for plugins
 " Input
 set pastetoggle=<F5> 		" Paste mode on F5
 "set mouse=a			" Enable mouse scrolling.
+
+" i always, ALWAYS hit ":W" instead of ":w"
+command! Q q
+command! W w
 
 " ====================================================================
 " Vim-Go settings
@@ -433,4 +442,93 @@ au BufReadPost *
 " JQuery
 " ====================================================================
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+" ====================================================================
+" LightLine
+" ====================================================================
+let g:lightline = {
+			\ 'colorscheme': 'wombat',
+			\ 'active': {
+			\   'left': [['mode', 'paste'], ['filename', 'modified']],
+			\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+			\ },
+			\ 'component_expand': {
+			\   'linter_warnings': 'LightlineLinterWarnings',
+			\   'linter_errors': 'LightlineLinterErrors',
+			\   'linter_ok': 'LightlineLinterOK'
+			\ },
+			\ 'component_type': {
+			\   'readonly': 'error',
+			\   'linter_warnings': 'warning',
+			\   'linter_errors': 'error'
+			\ },
+			\ }
+
+function! LightlineLinterWarnings() abort
+	let l:counts = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:counts.error + l:counts.style_error
+	let l:all_non_errors = l:counts.total - l:all_errors
+	return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+	let l:counts = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:counts.error + l:counts.style_error
+	let l:all_non_errors = l:counts.total - l:all_errors
+	return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+	let l:counts = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:counts.error + l:counts.style_error
+	let l:all_non_errors = l:counts.total - l:all_errors
+	return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+	if exists('#lightline')
+		call lightline#update()
+	end
+endfunction
+
+" ====================================================================
+" GitGutter
+" ====================================================================
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+let g:gitgutter_map_keys = 0
+" Always display gitgutter column. (Prevents movement of the linenumber column)
+if exists('&signcolumn')  " Vim 7.4.2201
+	set signcolumn=yes
+else
+	let g:gitgutter_sign_column_always = 1
+endif
+
+" ====================================================================
+" ALE
+" ====================================================================
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+
+" ====================================================================
+" Theme Overwrites
+" ====================================================================
+" Search hilight color
+hi Search cterm=NONE ctermfg=black ctermbg=gray
+" LineNumber Background
+highlight LineNr ctermfg=gray ctermbg=black
+" GitGutter Line Color
+highlight GitGutterAdd ctermfg=green ctermbg=black
+highlight GitGutterChange ctermfg=yellow ctermbg=black
+highlight GitGutterDelete ctermfg=red ctermbg=black
+highlight GitGutterChangeDelete ctermfg=yellow ctermbg=black
 
