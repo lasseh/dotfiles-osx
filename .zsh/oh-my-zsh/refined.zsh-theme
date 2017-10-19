@@ -71,13 +71,13 @@ cmd_exec_time() {
 #
 precmd() {
     vcs_info # Get version control info before we start outputting stuff
-    print -P "\n$(repo_information) %F{yellow}$(cmd_exec_time)%f"
+    print -P "\n%F{blue}%n%F{red}@%F{green}%m%F{red}: %f$(repo_information) %F{yellow}$(cmd_exec_time)%f"
 }
 
 # Define prompts
 #
 PROMPT="%(?.%F{magenta}.%F{red})❯%f " # Display a red prompt char on failure
-RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
+#RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
 
 # ------------------------------------------------------------------------------
 #
