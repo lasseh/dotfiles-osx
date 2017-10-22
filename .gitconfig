@@ -3,6 +3,8 @@
 	email = haugen.lasse@gmail.com
 [github]
 	user = lasseh
+[gist]
+	private = yes
 [core]
 	pager = less
 	editor = vim
