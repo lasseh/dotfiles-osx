@@ -200,6 +200,8 @@ Plugin 'airblade/vim-gitgutter'
 
 Plugin 'sheerun/vim-polyglot'
 
+Plugin 'pearofducks/ansible-vim'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -403,6 +405,8 @@ au BufNewFile,BufRead *.timer     set filetype=systemd
 " Nginx
 au BufRead,BufNewFile /opt/nginx/*,/etc/nginx/*,/usr/local/nginx/conf/*,/usr/local/nginx/conf.d/* if &ft == '' | setfiletype nginx | endif 
 
+" Ansible
+au BufRead,BufNewFile */playbooks/*.yml set filetype=ansible
 " ====================================================================
 " Nerdtree settings
 " ====================================================================
@@ -462,6 +466,9 @@ let g:lightline = {
 			\   'linter_warnings': 'warning',
 			\   'linter_errors': 'error'
 			\ },
+			\ 'component_function': {
+			\   'filename': 'LightLineFilename'
+			\ }
 			\ }
 
 function! LightlineLinterWarnings() abort
@@ -483,6 +490,10 @@ function! LightlineLinterOK() abort
 	let l:all_errors = l:counts.error + l:counts.style_error
 	let l:all_non_errors = l:counts.total - l:all_errors
 	return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+function! LightLineFilename()
+	return expand('%:p')
 endfunction
 
 autocmd User ALELint call s:MaybeUpdateLightline()
