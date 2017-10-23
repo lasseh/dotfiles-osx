@@ -11,5 +11,5 @@ cd .dotfiles
 git submodule update --init
 ```
 
-# iTerm2 setetings
+# iTerm2 settings
 * Left option key acts as: +Esc
