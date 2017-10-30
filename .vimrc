@@ -544,5 +544,7 @@ highlight GitGutterDelete ctermfg=red ctermbg=black
 highlight GitGutterChangeDelete ctermfg=yellow ctermbg=black
 
 " Conque-Shell
+" conque term is missing python scripts in git repo,
+" download manualy to .vim/plugins/Conque-Shell/autoload/conque_term/
 let g:ConqueTerm_Color = 1
 let g:ConqueTerm_InsertOnEnter = 0
