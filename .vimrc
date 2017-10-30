@@ -543,3 +543,6 @@ highlight GitGutterChange ctermfg=yellow ctermbg=black
 highlight GitGutterDelete ctermfg=red ctermbg=black
 highlight GitGutterChangeDelete ctermfg=yellow ctermbg=black
 
+" Conque-Shell
+let g:ConqueTerm_Color = 1
+let g:ConqueTerm_InsertOnEnter = 0
