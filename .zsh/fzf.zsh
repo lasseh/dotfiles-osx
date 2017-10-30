@@ -12,7 +12,7 @@ if [ -e ~/.fzf ]; then
 fi
 
 # fzf + ag configuration
-if _has fzf && _has ag; then
+if which fzf &>/dev/null; then
   export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
