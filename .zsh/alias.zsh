@@ -23,6 +23,11 @@ alias tmuxnetd='tmux attach -d -t net'
 alias tmuxtech='tmux new-session -t tech'
 alias tmuxtechd='tmux attach -d -t tech'
 
+# ncurses fix
+alias irssi='TERM=screen-256color irssi'
+alias htop='TERM=screen-256color htop'
+alias weechat='TERM=screen-256color weechat-curses'
+
 # ==> Git
 alias ga='git add'
 alias gpush='git push origin master'
