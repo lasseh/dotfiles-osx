@@ -31,15 +31,21 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm 
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 cdpath=(.)
 
-# use /etc/hosts and known_hosts for hostname completion
-[ -r /etc/ssh/ssh_known_hosts ] && _global_ssh_hosts=(${${${${(f)"$(</etc/ssh/ssh_known_hosts)"}:#[\|]*}%%\ *}%%,*}) || _global_ssh_hosts=()
-[ -r ~/.ssh/known_hosts ] && _ssh_hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}) || _ssh_hosts=()
+# ssh hosts
+# splits up the ssh config in folders for private and work.
+# include the folders in your .ssh/config
+# Comment out below because i want to force myself to create config for all my machines
+#[ -r ~/.ssh/known_hosts ] && _ssh_hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}) || _ssh_hosts=()
+[ -r ~/.ssh/config ] && _ssh_config=($(cat ~/.ssh/config | sed -ne 's/Host[=\t ]//p')) || _ssh_config=()
+[ -r ~/.ssh/private.d ] && _ssh_private_config=($(cat ~/.ssh/private.d/*.conf | sed -ne 's/Host[=\t ]//p')) || _ssh_private_config=()
+[ -r ~/.ssh/work.d ] && _ssh_work_config=($(cat ~/.ssh/work.d/*.conf | sed -ne 's/Host[=\t ]//p')) || _ssh_work_config=()
 [ -r ~/.ssh/config ] && _ssh_config=($(cat ~/.ssh/config | sed -ne 's/Host[=\t ]//p')) || _ssh_config=()
 [ -r /etc/hosts ] && : ${(A)_etc_hosts:=${(s: :)${(ps:\t:)${${(f)~~"$(</etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}} || _etc_hosts=()
 hosts=(
   "$_ssh_config[@]"
-  "$_global_ssh_hosts[@]"
-  "$_ssh_hosts[@]"
+  "$_ssh_private_config[@]"
+  "$_ssh_work_config[@]"
+#  "$_ssh_hosts[@]"
   "$_etc_hosts[@]"
   "$HOST"
   localhost
