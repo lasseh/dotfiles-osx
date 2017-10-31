@@ -14,13 +14,9 @@ alias wh='cd $HOME/code/go/src/github.com/webhuset'
 # ==> Tmux shortcuts
 # to create dev/tech session: tmux new-session -s dev
 alias tmuxa='tmux attach -t 0'
-alias tmuxx='tmux new-session -t 0'
 alias tmuxad='tmux attach -d -t 0'
-#alias tmuxdev='tmux new-session -t dev'
 alias tmuxdev='tmux attach -d -t dev'
-#alias tmuxnet='tmux new-session -t net'
 alias tmuxnet='tmux attach -d -t net'
-#alias tmuxtech='tmux new-session -t tech'
 alias tmuxtech='tmux attach -d -t tech'
 
 # ncurses fix
