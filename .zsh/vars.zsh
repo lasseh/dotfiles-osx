@@ -6,6 +6,11 @@ DISPLAY=:0.0
 EDITOR="vim"				# Use vim as the editor
 PAGER="less"				# Use less as the default pager
 
+# ==> Grep colors
+GREP_OPTIONS='--color=auto'
+alias grep="grep $GREP_OPTIONS"
+export GREP_COLORS="38;5;230:sl=38;5;240:cs=38;5;100:mt=38;5;161:fn=38;5;197:ln=38;5;212:bn=38;5;44:se=38;5;166"
+
 # ==> Time & Language
 LC_ALL="en_US.UTF-8"
 LANG="en_US.UTF-8"
@@ -33,7 +38,6 @@ test -d /bin 		&& PATH="${PATH}:/bin"
 test -d /usr/bin 	&& PATH="${PATH}:/usr/bin"
 test -d "${HOME}/bin" 	&& PATH="${PATH}:${HOME}/bin"
 test -d "${HOME}/sbin" 	&& PATH="${PATH}:${HOME}/sbin"
-
 
 test -d "/usr/local/go/bin" 	&& PATH="${PATH}:/usr/local/go/bin"
 test -d "${GOPATH}/bin" 	&& PATH="${PATH}:${GOPATH}/bin"
