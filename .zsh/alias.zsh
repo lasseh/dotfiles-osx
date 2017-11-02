@@ -6,6 +6,7 @@ alias ..='cd ..'
 alias cp='cp -v'
 alias mv='mv -v'
 alias rm='rm -v'
+alias nc='nc -v -w 3'
 
 # ==> Folder shortcuts
 alias c='cd $HOME/code/go/src/github.com/lasseh'
