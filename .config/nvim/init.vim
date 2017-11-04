@@ -60,6 +60,14 @@ call vundle#end()
 
 " Settings
 "
+syntax on
+
+" ====================================================================
+" Be (Vim)proved, required from Vundle
+" ====================================================================
+set nocompatible
+filetype off
+
 " Set SPACE as the leader-key.
 let mapleader = " "
 
@@ -68,7 +76,7 @@ filetype plugin indent on
 " Colorscheme
 " =============================================================
 let base16colorspace=256  	" Access colors present in 256 colorspace
-"set background=dark		" Use dark theme
+set background=dark         " Use dark theme
 colorscheme base16-unikitty-dark " Enable base16 theme
 let g:rehash256 = 1
 
@@ -177,13 +185,9 @@ noremap <leader>w :w<cr>
 noremap <leader>h :nohlsearch<CR>
 inoremap jk <esc>
 
-
-
 " i always, ALWAYS hit ":W" instead of ":w"
 command! Q q
 command! W w
-
-
 
 autocmd FileType go nmap <leader>r <Plug>(go-run)
 autocmd FileType go nmap <leader>b <Plug>(go-build)
@@ -193,18 +197,9 @@ autocmd FileType go nmap <leader>i <Plug>(go-implements)
 " autocmd FileType go nmap <leader>d <Plug>(go-doc)
 autocmd FileType go nmap <leader>dd <Plug>(go-doc-browser)
 
-
-
-
-
-
-
-
-
 " =============================================================
 " File Detects
 " =============================================================
-
 autocmd BufNewFile,BufRead *.junos set filetype=junos
 autocmd BufNewFile,BufRead *.py set filetype=python
 autocmd BufNewFile,BufRead *.pl set filetype=perl
@@ -235,7 +230,6 @@ augroup END
 set matchpairs+=<:>
 let g:html_indent_tags = 'li\|p' " Treat <li> and <p> tags like the block tags they are
 
-
 " =============================================================
 " Nerdtree settings
 " =============================================================
@@ -258,21 +252,10 @@ augroup CloseIfOnlyControlWinLeft
 	au BufEnter * call s:CloseIfOnlyControlWinLeft()
 augroup END
 
-" Better nerdtree settings?
-
-augroup Nerdtree
-  au!
-  autocmd StdinReadPre * let s:std_in=1               " fire up on start
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  " quit vim if Nerdtree is last window left
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
-
-let g:NERDTreeShowLineNumbers = 1
+let g:NERDTreeShowLineNumbers = 0
 let g:NERDTreeWinPos = 'left'
 " show hidden files -> toggle 'I'
 " let g:NERDTreeShowHidden = 1
-
 
 " open file at last opened position
 au BufReadPost *
@@ -367,7 +350,7 @@ endif
 " =============================================================
 " ALE
 " =============================================================
-let g:ale_sign_warning = '▲'
+let g:ale_sign_warning = '»'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
