@@ -19,10 +19,8 @@ Plugin 'chriskempson/base16-vim'
 " Limelight
 Plugin 'itchyny/lightline.vim'
 
-" ALE (Asynchronous Lint Engine) is a plugin for providing linting in NeoVim and Vim 8 while you edit your text files.
+" ALE (Asynchronous Lint Engine) is a plugin for providing linting.
 Plugin 'w0rp/ale'
-
-"Plugin 'neomake/neomake'
 
 " shows a git diff in the 'gutter'
 Plugin 'airblade/vim-gitgutter'
@@ -41,6 +39,7 @@ Plugin 'roxma/nvim-completion-manager'
 
 " async markdown preview
 "Plugin 'euclio/vim-markdown-composer'
+
 " formater for markdown
 "Plugin 'moorereason/vim-markdownfmt'
 
@@ -48,13 +47,19 @@ Plugin 'roxma/nvim-completion-manager'
 "Plugin 'pearofducks/ansible-vim'
 
 " a universal set of defaults
-"Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-sensible'
 
 " automatically adjusts 'shiftwidth' and 'expandtab'
 "Plugin 'tpope/vim-sleuth'
 
 " An autocompletion daemon for the Go programming language
 Plugin 'nsf/gocode'
+
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-gocode.vim'
+
+
 
 call vundle#end()
 
@@ -110,12 +115,8 @@ set wildmode=list:longest,full	" Show vim completion menu
 "set showmode			" Show mode
 set laststatus=2		" Display statusline
 set showcmd     		" show command in bottom bar
-set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
+"set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
 set noshowmode 			" Lightline handle this
-
-
-
-
 
 " =============================================================
 " Behaviour
@@ -136,7 +137,10 @@ set diffopt+=vertical		" Always use vertical diffs
 set updatetime=250		" Faster update of internals
 set cindent                 	" Automatic program indenting
 set cinkeys-=0#             	" Comments don't fiddle with indenting
-"set notitle                 	" Don't set the title of the Vim window
+" Title
+"autocmd BufEnter * let &titlestring = ' ' . expand("%:p:~")             
+set title
+set title titlestring=%{strpart(expand(\"%:p:h\"),stridx(expand(\"%:p:h\"),\"/\",strlen(expand(\"%:p:h\"))-12))}/%{expand(\"%:t\")}
 
 " Brackets
 set showmatch			" Show matching brackets
@@ -194,8 +198,7 @@ autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
 autocmd FileType go nmap <leader>c <Plug>(go-coverage)
 autocmd FileType go nmap <leader>i <Plug>(go-implements)
-" autocmd FileType go nmap <leader>d <Plug>(go-doc)
-autocmd FileType go nmap <leader>dd <Plug>(go-doc-browser)
+autocmd FileType go nmap <leader>d <Plug>(go-doc)
 
 " =============================================================
 " File Detects
@@ -204,7 +207,6 @@ autocmd BufNewFile,BufRead *.junos set filetype=junos
 autocmd BufNewFile,BufRead *.py set filetype=python
 autocmd BufNewFile,BufRead *.pl set filetype=perl
 autocmd BufNewFile,BufRead *.js set filetype=jquery
-
 autocmd BufNewFile,BufRead *.automount set filetype=systemd
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
 autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
@@ -298,6 +300,9 @@ let g:lightline = {
 			\   'linter_warnings': 'warning',
 			\   'linter_errors': 'error'
 			\ },
+			\ 'component_function': {
+			\   'filename': 'LightLineFilename'
+			\ }
 			\ }
 
 function! LightlineLinterWarnings() abort
@@ -320,6 +325,11 @@ function! LightlineLinterOK() abort
 	let l:all_non_errors = l:counts.total - l:all_errors
 	return l:counts.total == 0 ? '✓ ' : ''
 endfunction
+
+function! LightLineFilename()
+	return expand('%:p')
+endfunction
+
 
 autocmd User ALELint call s:MaybeUpdateLightline()
 
@@ -372,5 +382,23 @@ highlight GitGutterChange ctermfg=yellow ctermbg=black
 highlight GitGutterDelete ctermfg=red ctermbg=black
 highlight GitGutterChangeDelete ctermfg=yellow ctermbg=black
 
-let g:cm_complete_popup_delay = 1
-let g:cm_refresh_length = [[1,2],[7,1]]
+call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+    \ 'name': 'gocode',
+    \ 'whitelist': ['go'],
+    \ 'completor': function('asyncomplete#sources#gocode#completor'),
+    \ 'config': {
+    \    'gocode_path': expand('~/code/go/bin/gocode')
+    \  },
+    \ }))
+
+" Popup menu colors
+highlight Pmenu	ctermbg=0	ctermfg=2 guibg=0
+highlight PmenuSel ctermbg=10 guibg=8
+highlight PmenuSbar ctermbg=2	ctermfg=0 guibg=0
+highlight PmenuThumb ctermbg=darkgray cterm=NONE
+
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menu,preview,longest
+" }
+
