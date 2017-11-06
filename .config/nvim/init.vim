@@ -140,7 +140,7 @@ set cinkeys-=0#             	" Comments don't fiddle with indenting
 " Title
 "autocmd BufEnter * let &titlestring = ' ' . expand("%:p:~")             
 set title
-set title titlestring=%{strpart(expand(\"%:p:h\"),stridx(expand(\"%:p:h\"),\"/\",strlen(expand(\"%:p:h\"))-12))}/%{expand(\"%:t\")}
+set title titlestring=...%{strpart(expand(\"%:p:h\"),stridx(expand(\"%:p:h\"),\"/\",strlen(expand(\"%:p:h\"))-12))}/%{expand(\"%:t\")}
 
 " Brackets
 set showmatch			" Show matching brackets
