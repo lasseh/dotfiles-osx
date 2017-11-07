@@ -193,6 +193,9 @@ inoremap jk <esc>
 command! Q q
 command! W w
 
+" Do not show stupid q: window
+map q: :q
+
 autocmd FileType go nmap <leader>r <Plug>(go-run)
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
