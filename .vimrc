@@ -258,8 +258,8 @@ let g:rehash256 = 1
 set number 			" Enable line numbering
 set ruler			" Enable ruler
 set cmdheight=1			" Height of the command bar
-set cursorline			" Hightlight line with the cursor on
-set showmode 			" Shows the current mode in the modeline
+set cursorline!			" Hightlight line with the cursor on
+"set showmode			" Shows the current mode in the modeline
 set t_Co=256 			" Enable 256-color mode
 set t_ut=			" Dont know
 set term=xterm-256color		" 256-color mode, for windows/cygwin
@@ -270,7 +270,6 @@ set shortmess=aIoO		" no welcome message
 set wildmode=list:longest,full	" Show vim completion menu
 
 " Statusline
-"set showmode			" Show mode
 set laststatus=2		" Display statusline
 set showcmd     		" show command in bottom bar
 set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
@@ -302,6 +301,7 @@ set updatetime=250		" Faster update of internals
 set cindent                 	" Automatic program indenting
 set cinkeys-=0#             	" Comments don't fiddle with indenting
 "set notitle                 	" Don't set the title of the Vim window
+set lazyredraw
 
 
 " Brackets
