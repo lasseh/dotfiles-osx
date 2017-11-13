@@ -138,7 +138,7 @@ set updatetime=250		" Faster update of internals
 set cindent                 	" Automatic program indenting
 set cinkeys-=0#             	" Comments don't fiddle with indenting
 " Title
-"autocmd BufEnter * let &titlestring = ' ' . expand("%:p:~")             
+"autocmd BufEnter * let &titlestring = ' ' . expand("%:p:~")
 set title
 set title titlestring=...%{strpart(expand(\"%:p:h\"),stridx(expand(\"%:p:h\"),\"/\",strlen(expand(\"%:p:h\"))-12))}/%{expand(\"%:t\")}
 
