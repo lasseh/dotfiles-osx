@@ -107,7 +107,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Syntax completion, suggestion, and check error syntax
 " python install.py --gocode-completer
 " ====================================================================
-Plugin 'valloric/youcompleteme'
+"Plugin 'valloric/youcompleteme'
 
 " ====================================================================
 " The NERD Tree:
@@ -132,30 +132,30 @@ Plugin 'tpope/vim-commentary'
 " Vim Markdown Syntax:
 " Syntax for markdown files
 " ====================================================================
-Plugin 'plasticboy/vim-markdown'
+"Plugin 'plasticboy/vim-markdown'
 
 " ====================================================================
 " Vim Instant Markdown:
 " Preview your markdown files
 " ====================================================================
-Plugin 'suan/vim-instant-markdown'
+"Plugin 'suan/vim-instant-markdown'
 
 " ====================================================================
 " HTML5:
 " Omnicomplete and syntax
 " ====================================================================
-Plugin 'othree/html5.vim'
+"Plugin 'othree/html5.vim'
 
 " ====================================================================
 " JQuery Syntax:
 " ====================================================================
-Plugin 'nono/jquery.vim'
+"Plugin 'nono/jquery.vim'
 
 " ====================================================================
 " Vim Wiki:
 " Live preview of markdown
 " ====================================================================
-Plugin 'vimwiki/vimwiki'
+"Plugin 'vimwiki/vimwiki'
 
 " ====================================================================
 " Vim JSON:
@@ -167,7 +167,7 @@ Plugin 'elzr/vim-json'
 " Vim Go:
 " Go support in vim
 " ====================================================================
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
 
 " ====================================================================
 " Base16 colorschemes:
@@ -185,7 +185,7 @@ Plugin 'vim-scripts/Conque-Shell'
 " ====================================================================
 " Better Whitespace:
 " ====================================================================
-Plugin 'ntpeters/vim-better-whitespace'
+"Plugin 'ntpeters/vim-better-whitespace'
 
 
 " Uncommented cuz dont know how to use yet
