@@ -3,7 +3,8 @@
 
 # Set a resonable umask, we'd rather explicitly share
 # share stuff with our neighbours.
-umask 077
+# This fucks up all the shit, enable if you know what you are doing
+#umask 077
 
 # Pretty warnings
 function _zwarn() { echo -ne "\e[38;5;196mWARNING \e[38;5;208m~>\e[0m $1\n"; }
@@ -41,3 +42,15 @@ fi
 # Iterm2 Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+#
+# GPG is used as the SSH-Agent
+#if pid=$(pgrep ssh-agent); then
+#	kill -9 ${pid}
+#fi
+#gpg-connect-agent /bye
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+# fzf is buggy, ninjafix
+if [[ -e "/usr/local/opt/fzf/shell/key-bindings.zsh" ]]; then
+	source "/usr/local/opt/fzf/shell/key-bindings.zsh";
+fi
