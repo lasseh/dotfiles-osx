@@ -21,6 +21,7 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
+	rm-deleted = !git rm $(git ls-files --deleted)
 
 [color]
 	ui = auto

@@ -167,7 +167,7 @@ Plugin 'elzr/vim-json'
 " Vim Go:
 " Go support in vim
 " ====================================================================
-"Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go'
 
 " ====================================================================
 " Base16 colorschemes:
@@ -548,3 +548,6 @@ highlight GitGutterChangeDelete ctermfg=yellow ctermbg=black
 " download manualy to .vim/plugins/Conque-Shell/autoload/conque_term/
 let g:ConqueTerm_Color = 1
 let g:ConqueTerm_InsertOnEnter = 0
+
+" Gopass
+au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile

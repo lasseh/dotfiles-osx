@@ -62,3 +62,6 @@ fi
 
 # # ==> Utilities
 alias randpasswd="LANG=c < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo;"
+
+# VSCode
+alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"

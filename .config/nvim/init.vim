@@ -225,6 +225,8 @@ autocmd BufNewFile,BufRead *.vim setlocal expandtab tabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead */ansible/*.yml set filetype=ansible
 autocmd BufNewFile,BufRead */playbooks/*.yml set filetype=ansible
 
+au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
+
 augroup filetypedetect
 	autocmd BufNewFile,BufRead nginx.conf www.*.conf sites-enabled/*.conf sites-available/*.conf setf nginx
 augroup END

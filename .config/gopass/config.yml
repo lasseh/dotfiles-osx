@@ -1,0 +1,13 @@
+root:
+  askformore: false
+  autoimport: true
+  autosync: true
+  cliptimeout: 20
+  noconfirm: true
+  nopager: false
+  path: /Users/lasse/.password-store
+  safecontent: false
+  usesymbols: false
+  nocolor: false
+mounts: {}
+version: 1.6.11
